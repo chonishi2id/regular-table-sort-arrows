@@ -2,6 +2,8 @@
 ## Written By Timothy Chon
 ## Regular-Table provided by https://github.com/finos/regular-table#column-and-row-headers
 
+### Extremely basic sorting arrow functionality on a regular-table object
+
 ### How it works
 HTML:
 ```HTML
