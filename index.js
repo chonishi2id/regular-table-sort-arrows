@@ -42,20 +42,13 @@ function style2_th(th) {
   }
 }
 
-function style3_th(th) {
-  th.classList.replace("headerSortDown", "headerSortUp");
-}
-
 function styleListener() {
-  console.log("rendering");
   for (const th of table.querySelectorAll("thead th")) {
     style_th(th);
   }
 }
 
 async function clickEventListener(event) {
-  console.log("clicked");
-  // nuke all arrows to set them downward
   if (event.target.tagName === "TH") {
     // check if user clicked on a header that was already pointed up
     if(event.target.classList.contains("headerSortUp")) {
@@ -63,9 +56,11 @@ async function clickEventListener(event) {
       event.target.classList.replace("headerSortUp", "headerSortDown");
     }
     else {
+      // nuke all arrows to point downward
       for (const th of table.querySelectorAll("thead th")) {
         style2_th(th);
       }
+      // change the arrow of the header we clicked to point upwards
       event.target.classList.replace("headerSortDown", "headerSortUp");
     }
     await table.draw();
@@ -73,11 +68,9 @@ async function clickEventListener(event) {
 }
 
 export function init() {
-  console.log("initializing");
   table.setDataListener(dataListener);
   table.addStyleListener(styleListener);
   table.addEventListener("click", clickEventListener);
   table.draw();
   console.log(table);
-
 }
